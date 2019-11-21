@@ -1,5 +1,7 @@
 // https://docs.google.com/document/d/1OcSGrT3Snh_DXrDZ82DVY59eqvzNb_Nh_Db5z3qq2_k/edit
 
+// API holiday https://flynn.boolean.careers/exercises/api/holidays?year=2018&month=0
+
 // DESCRIZIONE:
 // https://docs.google.com/document/d/1OcSGrT3Snh_DXrDZ82DVY59eqvzNb_Nh_Db5z3qq2_k/edit
 // Per oggi però “solo” MIlestone:
@@ -78,6 +80,37 @@ $(document).ready(function() {
   // PARTE STAMPA CALENDARIO (END)-------------------------------------------
 
   // PARTE API
+
+  // Interroghiamo la API per farci ritornare le festività del mese
+
+  $.ajax({
+    url:"https://flynn.boolean.careers/exercises/api/holidays?year=2018&month=0",
+    method: "GET",
+    success: function(data){
+            // console.log(data);
+            var arrdata = data.response;
+            console.log(arrdata);
+
+            for (var i = 0; i < arrdata.length; i++) {
+              var oggetto = arrdata[i];
+              // console.log(oggetto);
+
+              var nomefesta = oggetto.name;
+              var datafesta = oggetto.date;
+              console.log(nomefesta, datafesta);
+
+              var elementoSelez = $("div[data-date= '" + datafesta + "']");
+              console.log(elementoSelez);
+
+              elementoSelez.addClass("festa");
+
+            }
+    },
+    error: function(){
+      console.log("There is an error");
+    }
+  }
+  )
 
 
 
