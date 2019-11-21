@@ -9,6 +9,7 @@
 // Chiedere all’api quali sono le festività per il mese ;
 // Evidenziare le festività nella lista
 
+// NIK RECAP -----------------------------------------------------------------------------
 
 // //Ottengo una data formattata del momento in cui si esegue questa riga
 // var date = moment().format('DD/MM/YYYY');
@@ -56,8 +57,31 @@
 
 
 $(document).ready(function() {
+
 	// Stampare gennaio 2018 (E SOLO QUELLO) usando moment
-  var gennaio = moment("2018-01", "YYYY-MM").daysInMonth()
-  console.log(gennaio);
+  var numeroDiGiorni = moment('01/01/2018', 'DD/MM/YYYY').daysInMonth();
+  console.log(numeroDiGiorni);
+
+    //Eseguo un ciclo per creare ciascun giorno del mese nel mio html
+    for(var i = 1; i <= numeroDiGiorni; i++) {
+
+      //Strutturo la data simile alla chiamata ajax
+      var currentDate = moment('2018-01-'+i, 'YYYY-MM-D').format('YYYY-MM-DD');
+
+      //Uso quella data per prendere le informazioni di quel giorno : numero e nome del giorno
+      var currentDay = moment(currentDate).format('DD dddd');
+
+    // Inserisco nell'html il mio div con attributo per eventuali selettori e la relativa data formattata
+    $('.content').append('<div data-date="'+currentDate+'">'+currentDay+'</div>')
+  }
+
+  // PARTE STAMPA CALENDARIO (END)-------------------------------------------
+
+  // PARTE API
+
+
+
+
+
 
 });
